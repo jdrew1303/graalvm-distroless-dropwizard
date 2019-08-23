@@ -17,7 +17,7 @@ RUN native-image --no-server \
 # this is a special container for graalvm containing zlib, glibc, 
 # libssl and openssl. these are used quite a bit by java applications
 # (and graal applications).
-FROM FROM cescoffier/native-base:latest
+FROM cescoffier/native-base:latest
 EXPOSE 8080
 COPY --from=graalvm /application
 ENTRYPOINT ["./application"]
