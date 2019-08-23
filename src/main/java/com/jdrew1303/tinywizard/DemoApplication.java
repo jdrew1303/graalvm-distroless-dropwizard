@@ -11,6 +11,6 @@ public class DemoApplication extends Application<DemoConfiguration> {
     @Override
     public void run(DemoConfiguration config, Environment env) throws Exception {
         ExampleApi api = new ExampleApi();
-        environment.jersey().register(api);
+        env.jersey().register(api);
     }
 }
