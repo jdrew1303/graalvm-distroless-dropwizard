@@ -1,0 +1,27 @@
+sudo: true
+dist: xenial
+language: minimal
+
+# where the magic happens
+services:
+  - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+# Only clone the most recent commit.
+git:
+  depth: 1
+
+# skip the install step
+install: true
+
+script: 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t jdrew1303/tinywizard:master .
+  - docker push jdrew1303/tinywizard:master
+  # create a manifest file for arch metadata
+  - export DOCKER_CLI_EXPERIMENTAL=enabled
+  - docker manifest create jdrew1303/tinywizard:master jdrew1303/tinywizard:master
+  - docker manifest push jdrew1303/tinywizard:master
