@@ -25,3 +25,7 @@ script:
   - export DOCKER_CLI_EXPERIMENTAL=enabled
   - docker manifest create jdrew1303/tinywizard:master jdrew1303/tinywizard:master
   - docker manifest push jdrew1303/tinywizard:master
+
+# There are just too many emails from travis :/
+notifications:
+  email: false
