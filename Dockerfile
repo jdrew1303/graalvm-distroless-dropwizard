@@ -4,7 +4,7 @@ WORKDIR /root/app
 RUN mvn dependency:resolve
 RUN mvn install
 
-FROM oracle/graalvm-ce:1.0.0-rc14 as graalvm
+FROM oracle/graalvm-ce:1.0.0-rc16 as graalvm
 COPY --from=builder /root/app/ /home/app/
 WORKDIR /home/app
 RUN native-image --no-server \
