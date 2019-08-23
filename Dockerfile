@@ -19,5 +19,5 @@ RUN native-image --no-server \
 # (and graal applications).
 FROM cescoffier/native-base:latest
 EXPOSE 8080
-COPY --from=graalvm /application
-ENTRYPOINT ["./application"]
+COPY --from=graalvm /home/app/hello-world .
+ENTRYPOINT ["./hello-world"]
