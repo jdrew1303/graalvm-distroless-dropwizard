@@ -20,4 +20,4 @@ RUN native-image --no-server \
 FROM cescoffier/native-base:latest
 EXPOSE 8080
 COPY --from=graalvm /home/app/tinywizard .
-ENTRYPOINT ["./tinywizard"]
+CMD ["./tinywizard"]
