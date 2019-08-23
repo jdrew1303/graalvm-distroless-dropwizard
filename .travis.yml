@@ -26,6 +26,15 @@ script:
   - docker manifest create jdrew1303/tinywizard:master jdrew1303/tinywizard:master
   - docker manifest push jdrew1303/tinywizard:master
 
+# we deploy using docker to heroku!!
+after_success:
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - heroku plugins:install @heroku-cli/plugin-container-registry
+  - echo "$HEROKU_API_KEY" | docker login -u "_" --password-stdin
+  - heroku container:push web --app $HEROKU_APP_NAME
+  - heroku container:release web --app $HEROKU_APP_NAME
+
+
 # There are just too many emails from travis :/
 notifications:
   email: false
