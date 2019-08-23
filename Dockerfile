@@ -8,9 +8,9 @@ FROM oracle/graalvm-ce:1.0.0-rc14 as graalvm
 COPY --from=builder /root/app/ /home/app/
 WORKDIR /home/app
 RUN native-image --no-server \
-                 --class-path target/hello-world.jar \
+                 --class-path target/tinywizard.jar \
                  -H:EnableURLProtocols=http \
-                 -H:Name=hello-world \
+                 -H:Name=tinywizard \
                  -H:Class=com.jdrew1303.tinywizard.DemoApplication \
                  --allow-incomplete-classpath
 
@@ -19,5 +19,5 @@ RUN native-image --no-server \
 # (and graal applications).
 FROM cescoffier/native-base:latest
 EXPOSE 8080
-COPY --from=graalvm /home/app/hello-world .
-ENTRYPOINT ["./hello-world"]
+COPY --from=graalvm /home/app/tinywizard .
+ENTRYPOINT ["./tinywizard"]
