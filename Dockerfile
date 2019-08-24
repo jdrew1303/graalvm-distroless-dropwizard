@@ -16,7 +16,7 @@ RUN native-image --no-server \
                 -H:Name=tinywizard \
                 -H:Class=com.jdrew1303.tinywizard.DemoApplication \
                 -jar target/tinywizard.jar
-RUN ls -lsh
+RUN ls -lsh ./target
 
 # this is a special container for graalvm containing zlib, glibc, 
 # libssl and openssl. these are used quite a bit by java applications
