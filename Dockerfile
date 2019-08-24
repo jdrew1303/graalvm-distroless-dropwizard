@@ -8,11 +8,14 @@ FROM oracle/graalvm-ce:1.0.0-rc16 as graalvm
 COPY --from=builder /root/app/ /home/app/
 WORKDIR /home/app
 RUN native-image --no-server \
-                 --class-path target/tinywizard.jar \
-                 -H:EnableURLProtocols=http \
-                 -H:Name=tinywizard \
-                 -H:Class=com.jdrew1303.tinywizard.DemoApplication \
-                 --allow-incomplete-classpath
+                --enable-http \
+                --enable-https \
+                --allow-incomplete-classpath \
+                --enable-url-protocols=http \
+                -H:ReflectionConfigurationFiles=src/main/docker/reflect.yml \
+                -H:Name=tinywizard \
+                -H:Class=com.jdrew1303.tinywizard.DemoApplication \
+                -jar target/tinywizard.jar
 
 # this is a special container for graalvm containing zlib, glibc, 
 # libssl and openssl. these are used quite a bit by java applications
