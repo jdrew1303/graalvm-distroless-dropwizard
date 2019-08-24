@@ -24,4 +24,4 @@ RUN chmod 777 tinywizard
 FROM cescoffier/native-base:latest
 EXPOSE 8080
 COPY --from=graalvm /home/app/tinywizard .
-CMD ["./tinywizard", "--report-unsupported-elements-at-runtime", ]
+CMD ["./tinywizard", "--report-unsupported-elements-at-runtime", "server"]
